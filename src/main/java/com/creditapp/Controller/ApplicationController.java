@@ -19,7 +19,7 @@ public class ApplicationController {
 
     private ApplicationService applicationService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String Hello(){
         return "Hello World";
     }
