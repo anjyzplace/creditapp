@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=prod target/creditapp-0.0.1.jar
+web: java -jar -Dspring.profiles.active=prod target/creditapp-0.0.1.jar --port=8080
