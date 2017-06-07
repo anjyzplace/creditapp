@@ -1,0 +1,1 @@
+web: java -jar target/creditapp-0.0.1.jar -Dspring.profiles.active=production
