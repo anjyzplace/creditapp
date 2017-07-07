@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +26,7 @@ public class ApplicationDaoImpl implements ApplicationDao {
             application.setId(resultSet.getInt("id"));
             application.setFirstName(resultSet.getString("firstname"));
             application.setLastName(resultSet.getString("lastname"));
+            application.setDateOfBirth(resultSet.getDate("dob"));
             return application;
 
         }
@@ -33,28 +35,30 @@ public class ApplicationDaoImpl implements ApplicationDao {
     @Override
     @Qualifier("mySql")
     public List<Application> getApplications(){
-        final String sql = "SELECT id, firstname, lastname FROM application";
+        final String sql = "SELECT id, firstname, lastname, dob FROM application";
         List<Application> applicationList = jdbcTemplate.query(sql, new ApplicationRowMapper());
         return applicationList;
     }
 
     @Override
     public Application Create(Application application) {
-        final String sql = "INSERT INTO application (firstname, lastname)  VALUES (?,?)";
+        final String sql = "INSERT INTO application (firstname, lastname, dob)  VALUES (?,?,?)";
         final String firstname = application.getFirstName();
         final String lastname = application.getLastName();
-        jdbcTemplate.update(sql, new Object[]{firstname, lastname});
+        final Date dob = application.getDateOfBirth();
+        jdbcTemplate.update(sql, new Object[]{firstname, lastname, dob});
         return application;
     }
 
     @Override
-    public Application Update(Application application) {
+    public Application Update(Application application, int id) {
         final String sql = "UPDATE application SET firstname = ?, lastname = ? WHERE id = ?";
-        final int id = application.getId();
+        //final int id = application.getId();
         final String firstname = application.getFirstName();
         final String lastname = application.getLastName();
-        jdbcTemplate.update(sql, new Object[]{firstname, lastname, id});
-        final String sql2 = "SELECT id, firstname, lastname FROM application WHERE id = ?";
+        final Date dob = application.getDateOfBirth();
+        jdbcTemplate.update(sql, new Object[]{firstname, lastname, id, dob});
+        final String sql2 = "SELECT id, firstname, lastname, dob FROM application WHERE id = ?";
         return jdbcTemplate.queryForObject(sql2, new ApplicationRowMapper(), id);
     }
 

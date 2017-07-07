@@ -25,8 +25,8 @@ public class ApplicationService {
         return applicationDao.Create(application);
     }
 
-    public Application UpdateApplication(Application application){
-        return applicationDao.Update(application);
+    public Application UpdateApplication(Application application, int id){
+        return applicationDao.Update(application, id);
     }
 
     public Application DeleteApplication(int id){

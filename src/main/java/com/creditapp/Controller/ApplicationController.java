@@ -31,16 +31,20 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public Application createApplication(@RequestBody Application application){
-        return applicationService.CreateApplication(application);
+    public String createApplication(@RequestBody Application application){
+         applicationService.CreateApplication(application);
+         String messaage = "Message: " +" \"Application for "+ application.getFirstName() + " "+ application.getLastName() + " "+ "added\"";
+        return  messaage;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public Application updateApplication(@RequestBody Application application){
-        return applicationService.UpdateApplication(application);
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public Application updateApplication(@RequestBody Application application, @PathVariable int id){
+        return applicationService.UpdateApplication(application, id);
     }
     @RequestMapping(value = "/delete/{id}")
-    public Application deleteApplication(@PathVariable int id ){
-        return applicationService.DeleteApplication(id);
+    public String deleteApplication(@PathVariable int id ){
+        Application deleted = applicationService.DeleteApplication(id);
+        String messaage = "Message: " +" \"Application for "+ deleted.getFirstName() + " "+ deleted.getLastName() + " "+ "has been deleted\"";
+        return messaage;
     }
 }
