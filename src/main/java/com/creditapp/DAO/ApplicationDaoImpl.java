@@ -52,12 +52,12 @@ public class ApplicationDaoImpl implements ApplicationDao {
 
     @Override
     public Application Update(Application application, int id) {
-        final String sql = "UPDATE application SET firstname = ?, lastname = ? WHERE id = ?";
+        final String sql = "UPDATE application SET firstname = ?, lastname = ?, dob = ? WHERE id = ?";
         //final int id = application.getId();
         final String firstname = application.getFirstName();
         final String lastname = application.getLastName();
         final Date dob = application.getDateOfBirth();
-        jdbcTemplate.update(sql, new Object[]{firstname, lastname, id, dob});
+        jdbcTemplate.update(sql, new Object[]{firstname, lastname, dob, id});
         final String sql2 = "SELECT id, firstname, lastname, dob FROM application WHERE id = ?";
         return jdbcTemplate.queryForObject(sql2, new ApplicationRowMapper(), id);
     }
