@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RequestMapping(value="/application")
 public class ApplicationController {
 
@@ -30,6 +30,7 @@ public class ApplicationController {
         return applicationService.getAll();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createApplication(@RequestBody Application application){
          applicationService.CreateApplication(application);
@@ -37,10 +38,12 @@ public class ApplicationController {
         return  messaage;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public Application updateApplication(@RequestBody Application application, @PathVariable int id){
         return applicationService.UpdateApplication(application, id);
     }
+    @CrossOrigin
     @RequestMapping(value = "/delete/{id}")
     public String deleteApplication(@PathVariable int id ){
         Application deleted = applicationService.DeleteApplication(id);
