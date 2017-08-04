@@ -10,4 +10,5 @@ public interface ApplicationDao {
     Application Create(Application application);
     Application Update(Application application, int id);
     Application Delete(int  id);
+    Application getSingleApplication(int id);
 }

@@ -32,4 +32,8 @@ public class ApplicationService {
     public Application DeleteApplication(int id){
         return applicationDao.Delete(id);
     }
+
+    public Application getApplication(int id) {
+        return applicationDao.getSingleApplication(id);
+    }
 }
