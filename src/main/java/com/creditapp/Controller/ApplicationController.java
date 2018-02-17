@@ -25,6 +25,7 @@ public class ApplicationController {
 
     @ApiOperation(value = "Retrieve a single application")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
     public Application getSingleApplication(@PathVariable int id){
         return applicationService.getApplication(id);
     }

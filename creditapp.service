@@ -1,0 +1,9 @@
+[Unit]
+Description = Java Service
+After network.target = creditappservice.service
+
+[Service]
+Type = forking
+ExecStart = /usr/local/bin/creditappservice.sh start
+ExecStop = /usr/local/bin/creditappservice.sh stop
+ExecReload = /usr/local/bin/creditappservice.sh reload

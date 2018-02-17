@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: root
+
+  - changeSet:
+      id: 1
+      author: Anjola
+      changes:
+        - createTable:
+            tableName: application
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar(50)
+              - column:
+                  name: lastname
+                  type: varchar(50)
+              - column:
+                  name: dob
+                  type: datetime
+              - column:
+                  name: resident_status
+                  type: varchar(50)
+              - column:
+                  name: income
+                  type: varchar(50)
+              - column:
+                  name: employment_status
+                  type: varchar(50)
+              - column:
+                  name: no_of_dep
+                  type: int
+              - column:
+                  name: address_years
+                  type: int
+              - column:
+                  name: address_months
+                  type: int
+              - column:
+                  name: credit_limit
+                  type: varchar(50)
